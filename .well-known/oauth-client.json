@@ -1,0 +1,4 @@
+{
+  "type": "local-dev",
+  "note": "Stripe onboarding automation does not ship OAuth client defaults yet."
+}

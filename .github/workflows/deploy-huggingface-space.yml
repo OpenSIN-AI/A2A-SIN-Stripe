@@ -1,0 +1,46 @@
+name: Deploy Hugging Face Space
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+
+jobs:
+  deploy:
+    if: ${{ secrets.HF_TOKEN != '' }}
+    runs-on: ubuntu-latest
+    env:
+      HF_TOKEN: ${{ secrets.HF_TOKEN }}
+      HF_SPACE_REPO_ID: delqhi/sin-stripe
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Install deployment dependencies
+        run: pip install huggingface_hub
+
+      - name: Create or ensure Hugging Face Space
+        run: |
+          python - <<'PY'
+          import os
+          from huggingface_hub import HfApi
+          api = HfApi(token=os.environ['HF_TOKEN'])
+          api.create_repo(repo_id=os.environ['HF_SPACE_REPO_ID'], repo_type='space', space_sdk='docker', exist_ok=True)
+          PY
+
+      - name: Push repository contents to Hugging Face Space
+        run: |
+          set -euo pipefail
+          git config --global user.name "GitHub Actions"
+          git config --global user.email "actions@github.com"
+          git clone "https://oauth2:${HF_TOKEN}@huggingface.co/spaces/delqhi/sin-stripe" hf-space
+          rsync -a --delete --exclude ".git/" --exclude ".github/" --exclude "node_modules/" --exclude "dist/" ./ hf-space/
+          cd hf-space
+          git add .
+          git commit -m "Deploy SIN-Stripe from GitHub Actions" || true
+          git push origin main

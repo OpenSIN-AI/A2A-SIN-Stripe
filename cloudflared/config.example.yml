@@ -1,0 +1,6 @@
+tunnel: sin-stripe
+credentials-file: /etc/cloudflared/sin-stripe.json
+ingress:
+  - hostname: sin-stripe.delqhi.com
+    service: https://delqhi-sin-stripe.hf.space
+  - service: http_status:404

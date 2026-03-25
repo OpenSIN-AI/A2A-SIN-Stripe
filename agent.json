@@ -1,0 +1,29 @@
+{
+  "id": "sin-stripe",
+  "displayName": "SIN-Stripe",
+  "team": "team-finance",
+  "description": "Stripe automation and onboarding specialist for sub-3-minute setup, payment links, redirects, and webhook/secret fanout.",
+  "version": "2026.03.25",
+  "deployment": {
+    "workforceIndex": "https://a2a.delqhi.com",
+    "landingPage": "https://delqhi-sin-stripe.hf.space",
+    "publicA2A": "https://a2a.delqhi.com/agents/sin-stripe",
+    "cimdAnchor": "https://delqhi-sin-stripe.hf.space",
+    "vmServer": "Hugging Face Space free CPU VM"
+  },
+  "a2a": {
+    "wellKnownCard": "/.well-known/agent-card.json",
+    "rpcPath": "/a2a/v1",
+    "transport": "jsonrpc-over-http"
+  },
+  "mcp": {
+    "transport": "stdio",
+    "configPath": "./mcp-config.json"
+  },
+  "marketplace": {
+    "pricingModel": "subscription",
+    "monthlyPrice": 18,
+    "purchaseModes": ["subscription"],
+    "category": "finance"
+  }
+}

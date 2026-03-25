@@ -1,0 +1,27 @@
+import { mkdir, writeFile } from 'node:fs/promises';
+import { join } from 'node:path';
+
+const root = new URL('..', import.meta.url).pathname;
+const wellKnown = join(root, '.well-known');
+await mkdir(wellKnown, { recursive: true });
+const card = {
+  name: 'SIN-Stripe',
+  description: 'Stripe automation and onboarding agent for sub-3-minute setup.',
+  version: '2026.03.25',
+  documentationUrl: 'pending local-only scaffold',
+  url: 'http://127.0.0.1:4672/a2a/v1',
+  capabilities: { streaming: false, pushNotifications: false },
+  defaultInputModes: ['text/plain', 'application/json'],
+  defaultOutputModes: ['text/plain', 'application/json'],
+  skills: [
+    { id: 'sin.stripe.health', name: 'Health', description: 'Check base agent readiness.' },
+    { id: 'sin.stripe.keys.status', name: 'Stripe Keys Status', description: 'Check Stripe secret presence without returning values.' },
+    { id: 'sin.stripe.onboarding.plan', name: 'Onboarding Plan', description: 'Return the under-3-minute Stripe setup plan.' },
+    { id: 'sin.stripe.payment_links.plan', name: 'Payment Links Plan', description: 'Plan automated product/price/payment-link generation.' },
+    { id: 'sin.stripe.webhook.plan', name: 'Webhook Plan', description: 'Plan webhook creation, signing secret capture, and fanout.' }
+  ],
+  supportedInterfaces: [{ url: 'http://127.0.0.1:4672/a2a/v1', protocolBinding: 'JSONRPC', protocolVersion: '1.0' }]
+};
+await writeFile(join(wellKnown, 'agent-card.json'), JSON.stringify(card, null, 2));
+await writeFile(join(wellKnown, 'agent.json'), JSON.stringify(card, null, 2));
+await writeFile(join(wellKnown, 'oauth-client.json'), JSON.stringify({ type: 'local-dev', note: 'Stripe onboarding automation does not ship OAuth client defaults yet.' }, null, 2));

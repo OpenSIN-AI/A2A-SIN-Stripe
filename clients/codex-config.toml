@@ -1,0 +1,5 @@
+# Placeholder client config for SIN-Stripe
+
+[agent]
+name = "SIN-Stripe"
+endpoint = "https://delqhi-sin-stripe.hf.space/a2a/v1"
