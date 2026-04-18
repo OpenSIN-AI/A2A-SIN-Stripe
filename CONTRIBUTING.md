@@ -1,30 +1,16 @@
-# Contributing to sin-stripe
+# Contributing
 
-Thank you for your interest in contributing!
+## Boundary Rules
 
-## Getting Started
+Before adding a feature or top-level claim, answer:
 
-1. Fork the repository
-2. Create a feature branch: `git checkout -b feat/my-feature`
-3. Make your changes
-4. Run tests: `npm test`
-5. Commit with conventional commits: `git commit -m "feat: add my feature"`
-6. Push and open a PR
+1. Is this specifically Stripe integration or payment setup work?
+2. Does another OpenSIN repo already own the canonical source of truth?
 
-## Communication
+### Put it in `A2A-SIN-Stripe` if:
+- it improves Stripe integration
+- it improves this repo's A2A agent behavior
+- it improves Stripe onboarding or payment-link/webhook workflows
 
-- Always leave screenshots for visual changes
-- Always leave a detailed PR description
-- Always review your code first
-- Always communicate in GitHub (issues or PRs)
-
-## Code Style
-
-- Use TypeScript
-- Follow existing patterns
-- Write tests for new features
-- JSDoc on all exported functions
-
-## License
-
-By contributing, you agree that your contributions will be licensed under the MIT License.
+### Do NOT put it in `A2A-SIN-Stripe` if:
+- it claims broader finance, product, ops, or docs ownership
