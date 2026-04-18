@@ -1,7 +1,7 @@
-FROM node:22-bookworm-slim
+FROM oven/bun:latest
 WORKDIR /app
 COPY package.json package-lock.json* ./
-RUN npm install
+RUN --mount=type=cache,id=bun,target=/root/.bun/ bun install --frozen-lockfile
 COPY . .
 RUN npm run build
 ENV PORT=7860
