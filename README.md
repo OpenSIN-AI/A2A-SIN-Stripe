@@ -21,7 +21,7 @@ Endnutzer sollen Stripe nicht manuell in langen Dashboard-Sessions einrichten m√
 - GitHub repo: `https://github.com/Delqhi/sin-stripe`
 - Hugging Face Space: `https://huggingface.co/spaces/delqhi/sin-stripe`
 - Landing page: `https://delqhi-sin-stripe.hf.space`
-- Public A2A target: `https://a2a.delqhi.com/agents/sin-stripe`
+- Public A2A target: `https://chat.opensin.ai/agents/sin-stripe`
 
 ## Kernf√§higkeiten
 
